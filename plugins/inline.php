@@ -181,5 +181,5 @@ if ($cmd == "start inline") {
 			'switch_inline_query_current_chat' => 'messaggio'
 		],
 	];
-	sm($chatID, "Usami con la funzione inline di Telegram.\n\nEsempio: <code>@" . $config['username_bot'] . " Messaggio</code>", $menu, 'html', true, false, true);
+	sm($chatID, "Usami con la funzione inline di Telegram.\n\nEsempio: " . code("@" . $config['username_bot'] . " Messaggio"), $menu);
 }

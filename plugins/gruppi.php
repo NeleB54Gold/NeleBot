@@ -216,10 +216,12 @@ if ($typechat == 'supergroup' or $typechat == 'group') {
 		foreach ($g['admins'] as $ad) {
 			if ($ad['user']['is_bot'] !== true) {
 				$nomec = $ad['user']['first_name'];
-				if (isset($ad['user']['last_name'])) {
+				if ($ad['is_anonymous']) {
+					$nomec = "Anonimo";
+				} elseif (isset($ad['user']['last_name'])) {
 					$nomec .= ' ' . $ad['user']['last_name'];
 				}
-				if (isset($ad['user']['username'])) {
+				if (isset($ad['user']['username']) and !$ad['is_anonymous']) {
 					$nomec = text_link($nomec, "t.me/" . $ad['user']['username']);
 				} else {
 					$nomec = bold($nomec);
@@ -366,9 +368,32 @@ if ($typechat == 'supergroup' or $typechat == 'group') {
 		if ($botisadmin) {
 			if ($botperms['can_pin_messages']) {
 				if ($uPerms['can_pin_messages']) {
-					$m = unpin($chatID);
+					$m = unpin($chatID, $rmsgID);
 					if ($m['error_code']) {
 						sm($userID, "Non sono riuscito togliere il messaggio fissato dal Gruppo:\n" . code($m['description']));
+					}
+				} else {
+					sm($userID, "Non hai il permesso di fissare messaggi su " . bold($title));
+				}
+			} else {
+				sm($userID, "Non ho il permesso di fissare messaggi su " . bold($title));
+			}
+		} else {
+			sm($userID, "Non sono admin sul gruppo " . bold($title));
+		}
+		die;
+	}
+
+	# Togli tutti i messaggi fissati (Solo per gli Admin del Gruppo)
+	if ($cmd == 'unpinall' and $isStaff) {
+		if ($botisadmin) {
+			if ($botperms['can_pin_messages']) {
+				if ($uPerms['can_pin_messages']) {
+					$m = unpinAll($chatID);
+					if ($m['error_code']) {
+						sm($userID, "Non sono riuscito togliere il messaggio fissato dal Gruppo:\n" . code($m['description']));
+					} else {
+						sm($chatID, "Tolti tutti i messaggi fissati!");
 					}
 				} else {
 					sm($userID, "Non hai il permesso di fissare messaggi su " . bold($title));

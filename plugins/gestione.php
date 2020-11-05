@@ -429,7 +429,7 @@ if ($isadmin) {
 						} else {
 							$new[$botID] = "visto";
 						}
-						db_query("INSERT INTO utenti (user_id, nome, cognome, username, lang, page, status, last_update) VALUES (?,?,?,?,?,?,?,?)", [$ad['user']['id'], $ad['user']['first_name'], $ad['user']['last_name'], $ad['user']['username'], 'en', '', json_encode($new), time()], "no");
+						db_query("INSERT INTO utenti (user_id, nome, cognome, username, lang, page, status, first_update, last_update) VALUES (?,?,?,?,?,?,?,?,?)", [$ad['user']['id'], $ad['user']['first_name'], $ad['user']['last_name'], $ad['user']['username'], 'en', '', json_encode($new), time(), time()], "no");
 					}
 					if ($mtt) {
 						$menu[] = [
@@ -439,7 +439,12 @@ if ($isadmin) {
 							]
 						];
 					} else {
-						$t .= "\n• " . tag($ad['user']['id'], $ad['user']['first_name'] ,$ad['user']['last_name']) . " [" . code($ad['user']['id']) . "] \n" . $ad['status'];
+						if ($ad['is_anonymous']) {
+							$isanon = italic("(Anonimo)");
+						} else {
+							unset($isanon);
+						}
+						$t .= "\n• " . tag($ad['user']['id'], $ad['user']['first_name'] ,$ad['user']['last_name']) . " [" . code($ad['user']['id']) . "]\n" . $ad['status'] . " $isanon";
 					}
 				}
 				$menu[] = [
