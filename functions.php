@@ -140,11 +140,11 @@ if (isset($update)) {
 	
 	# Informazioni chat inoltrate
 	if (isset($update['message']['forward_from_chat'])) {
-		$fchatID = $update['message']['forward_from_chat']['chat']['id']; // ID del gruppo/canale del messaggio inoltrato
-		$ftypechat = $update['message']['forward_from_chat']['chat']['type']; // Tipo ci chat (private, group, supergroup, channel) (In base all' inoltro)
+		$fchatID = $update['message']['forward_from_chat']['id']; // ID del gruppo/canale del messaggio inoltrato
+		$ftypechat = $update['message']['forward_from_chat']['type']; // Tipo ci chat (private, group, supergroup, channel) (In base all' inoltro)
 		if ($ftypechat !== "private") {
-			$ftitle = $update['message']['forward_from_chat']['chat']['title']; // Titolo del canale da cui è stato inoltrato
-			$fusernamechat = $update['message']['forward_from_chat']['chat']['username']; // Username del canale da cui è stato inoltrato
+			$ftitle = $update['message']['forward_from_chat']['title']; // Titolo del canale da cui è stato inoltrato
+			$fusernamechat = $update['message']['forward_from_chat']['username']; // Username del canale da cui è stato inoltrato
 		}
 	}
 
