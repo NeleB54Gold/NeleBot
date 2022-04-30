@@ -1,10 +1,13 @@
 <p align="center"> 
-    <img src="https://i.imgur.com/F4YcY2D.jpg" alt="Banner" /> 
+    <img src="https://telegra.ph/file/b7420f22ca13c061418ad.jpg" alt="Banner" /> 
 </p>
+
+## Framework obsoleto!
+Questa base non viene più aggiornata, passa a [NeleBot X Framework](https://github.com/NeleB54Gold/NeleBotX) per migliorare le tue esperienze!
 
 ## Cos'è NeleBot?
 **NeleBot è il framework** per [Bot Telegram](https://core.telegram.org/bots) in [PHP](https://php.net) **completamente realizzato da 0** e da uno 
-**sviluppatore** con **più di 3 anni** di **esperienza** con il **linguaggio stesso.**
+**sviluppatore** con **più di 2 anni** di **esperienza** con il **linguaggio stesso.**
 
 ## Perche dovrei usare NeleBot?
 **NeleBot ha tante funzioni in più che renderanno la creazione del tuo bot più facile e sicura!**
